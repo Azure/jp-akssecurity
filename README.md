@@ -1,6 +1,6 @@
 # Whitepaper for Azure Kubernetes Service
 
-本ホワイトペーパーでは、 Azure Kubernetes Service のセキュリティ対策について解説を行います。
+本ドキュメントでは、Azure Kubernetes Services (AKS) のセキュリティ対策について、よくご質問を受けるポイントに絞って解説しています。ここで取り上げた製品・サービスの詳細および最新情報は、[製品ドキュメント](https://docs.microsoft.com)をご参照ください。なお、本ドキュメントの作成には、[株式会社エーピーコミュニケーションズ様](https://www.ap-com.co.jp/)にご協力をいただきました。
 
 ## [はじめに](./chapter00.md)
 
@@ -14,13 +14,14 @@ Azure Kubernetes Service (AKS) のネットワーク構成の特徴について�
 
 Microsoft Defender for Cloud 及び Microsoft Defender for Container を用い AKS 上の運用に際し発生のログをセキュリティの観点でモニタリングする手法を紹介します。
 
-## 3章 秘匿情報の管理
+## 3章 秘匿情報の管理(準備中)
 
 Azure Key Vault を用い、データベースのパスワードなど管理に注意が必要な秘匿情報を適切に管理する手法について説明します。
 
-## 4章 セキュアなCI/CDパイプラインの構築
+## 4章 セキュアなCI/CDパイプラインの構築(準備中)
 
 Microsoft Defender for Containers を用い CI/CD パイプラインのセキュリティ性を高める手法を紹介します。
+
 
 ## Contributing
 
