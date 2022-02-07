@@ -1,14 +1,26 @@
-# Project
+# Whitepaper for Azure Kubernetes Service
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+本ホワイトペーパーでは、 Azure Kubernetes Service のセキュリティ対策について解説を行います。
 
-As the maintainer of this project, please make a few updates:
+## [はじめに](./chapter00.md)
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+- インフラ基盤のセキュリティ対策の勘所と Kubernetes 脅威マトリクスについて解説します。
+
+## [1章 AKSネットワーキングとセキュリティ](./chapter01.md)
+
+Azure Kubernetes Service (AKS) のネットワーク構成の特徴について説明をした上で、セキュリティ対策のポイントと具体的な参照アーキテクチャを紹介します。
+
+## [2章 セキュリティイベントのモニタリング](./chapter02.md)
+
+Microsoft Defender for Cloud 及び Microsoft Defender for Container を用い AKS 上の運用に際し発生のログをセキュリティの観点でモニタリングする手法を紹介します。
+
+## 3章 秘匿情報の管理
+
+Azure Key Vault を用い、データベースのパスワードなど管理に注意が必要な秘匿情報を適切に管理する手法について説明します。
+
+## 4章 セキュアなCI/CDパイプラインの構築
+
+Microsoft Defender for Containers を用い CI/CD パイプラインのセキュリティ性を高める手法を紹介します。
 
 ## Contributing
 
