@@ -224,7 +224,7 @@ Japan East                japaneast            (Asia Pacific) Japan East
 リソースグループの作成を実行します。
 
 ```bash
-$ az group \
+$ az group create \
   --name ${RESOURCE_GROUP} \
   --location ${LOCATION}
 ```
