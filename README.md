@@ -14,14 +14,17 @@ Azure Kubernetes Service (AKS) のネットワーク構成の特徴について�
 
 Microsoft Defender for Cloud 及び Microsoft Defender for Container を用い AKS 上の運用に際し発生のログをセキュリティの観点でモニタリングする手法を紹介します。
 
-## 3章 秘匿情報の管理(準備中)
+## [3章 秘匿情報の管理](./chapter03.md)
 
 Azure Key Vault を用い、データベースのパスワードなど管理に注意が必要な秘匿情報を適切に管理する手法について説明します。
 
-## 4章 セキュアなCI/CDパイプラインの構築(準備中)
+## [4章 セキュアなCI/CDパイプラインの構築](./chapter04.md)
 
 Microsoft Defender for Containers を用い CI/CD パイプラインのセキュリティ性を高める手法を紹介します。
 
+## [Appendix](./appendix.md)
+
+各章の記載内容の参考資料へのリンクと、Azure 上でのシステムに役立つチェックリストを紹介します。
 
 ## Contributing
 

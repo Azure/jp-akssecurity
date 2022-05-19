@@ -1,0 +1,54 @@
+name: Build Image and Push to ACR
+on: [push]
+
+permissions:
+  id-token: write
+  contents: read
+      
+jobs: 
+  build-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Dockerfile
+      uses: actions/checkout@v2
+
+    - name: Build Container Image'
+      env:
+        DOCKER_CONTENT_TRUST: 1
+      run: |
+        docker build -t ${{ secrets.ACRNAME_REVIEW }}.azurecr.io/sampleimage:${{ github.sha }} .
+
+    - uses: Azure/container-scan@v0 
+      name: Scan image for vulnerabilities
+      id: container-scan
+      continue-on-error: true
+      with:
+        image-name: ${{ secrets.ACRNAME_REVIEW }}.azurecr.io/sampleimage:${{ github.sha }} 
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Push Container Image to Production ACR
+      if: steps.container-scan.outcome == 'success'
+      run: |
+        az acr login --name ${{ secrets.ACRNAME_PRODUCTION }}
+        docker tag ${{ secrets.ACRNAME_REVIEW }}.azurecr.io/sampleimage:${{ github.sha }}  ${{ secrets.ACRNAME_PRODUCTION }}.azurecr.io/sampleimage:${{ github.sha }} 
+        docker push ${{ secrets.ACRNAME_PRODUCTION }}.azurecr.io/sampleimage:${{ github.sha }} 
+
+    - name: Push Container Image to Review ACR
+      if: steps.container-scan.outcome == 'failure'
+      run: |
+        az acr login --name ${{ secrets.ACRNAME_REVIEW }}
+        docker push ${{ secrets.ACRNAME_REVIEW }}.azurecr.io/sampleimage:${{ github.sha }} 
+
+    - name: Post logs to appinsights
+      uses: Azure/publish-security-assessments@v0
+      if: steps.container-scan.outcome == 'failure'
+      with: 
+        scan-results-path: ${{ steps.container-scan.outputs.scan-report-path }}
+        connection-string: ${{ secrets.AZ_APPINSIGHTS_CONNECTION_STRING }}
+        subscription-token: ${{ secrets.AZ_SUBSCRIPTION_TOKEN }} 

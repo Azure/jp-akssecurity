@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+    - staging
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-to-aks-staging:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - uses: azure/aks-set-context@v2.0
+      with:
+        cluster-name: ${{ secrets.CLUSTER_NAME_STAGING }}
+        resource-group: ${{ secrets.CLUSTER_RESOURCE_GROUP }}
+
+    - uses: Azure/k8s-deploy@v3.1
+      timeout-minutes: 3
+      with:
+        action: deploy
+        manifests: |
+          sampleapp.yaml
