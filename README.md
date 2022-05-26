@@ -1,4 +1,4 @@
-# Whitepaper for Azure Kubernetes Service
+# Azure Kubernetes Service: セキュリティの脅威への対策ガイド
 
 本ドキュメントでは、Azure Kubernetes Services (AKS) のセキュリティ対策について、よくご質問を受けるポイントに絞って解説しています。ここで取り上げた製品・サービスの詳細および最新情報は、[製品ドキュメント](https://docs.microsoft.com)をご参照ください。なお、本ドキュメントの作成には、[株式会社エーピーコミュニケーションズ様](https://www.ap-com.co.jp/)にご協力をいただきました。
 
